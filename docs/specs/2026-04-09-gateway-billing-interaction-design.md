@@ -2,6 +2,7 @@
 
 > 本文补充 [`2026-04-09-api-gateway-module-design.md`](./2026-04-09-api-gateway-module-design.md) 与 [`2026-04-09-billing-and-subscription-core-module-design.md`](./2026-04-09-billing-and-subscription-core-module-design.md) 之间的接口边界与交互时序。
 > 本文不替代模块设计文档，而是细化两者在额度校验、事件记录与状态切换上的协作方式。
+> 涉及底层数据对象定义时，统一参考 [`2026-04-09-database-logical-model-design.md`](./2026-04-09-database-logical-model-design.md)。
 
 ## 1. 设计目标
 

@@ -3,6 +3,7 @@
 > 本文是 [`2026-03-27-model-api-platform-design.md`](./2026-03-27-model-api-platform-design.md) 的模块细化文档之一。
 > 本文只描述 API 代理网关模块，不重复总设计中的项目背景、商业定位与整体 MVP 范围。
 > 与计费核心之间的接口边界与时序细化，见 [`2026-04-09-gateway-billing-interaction-design.md`](./2026-04-09-gateway-billing-interaction-design.md)。
+> 涉及数据对象与表关系时，统一参考 [`2026-04-09-database-logical-model-design.md`](./2026-04-09-database-logical-model-design.md)。
 
 ## 1. 模块目标与非目标
 

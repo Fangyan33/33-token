@@ -2,6 +2,7 @@
 
 > 本文是 [`2026-03-27-model-api-platform-design.md`](./2026-03-27-model-api-platform-design.md) 的模块细化文档之一。
 > 本文只描述用户控制台模块，不重复总设计中的项目背景、商业定位与整体 MVP 范围。
+> 涉及账户、套餐、API Key、订单与周期汇总的数据对象时，统一参考 [`2026-04-09-database-logical-model-design.md`](./2026-04-09-database-logical-model-design.md)。
 
 ## 1. 模块目标与非目标
 
