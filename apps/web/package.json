@@ -1,5 +1,12 @@
 {
   "name": "@platform/web",
   "private": true,
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "type": "module",
+  "description": "React + Vite 前端骨架",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
 }
