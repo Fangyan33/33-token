@@ -1,0 +1,3 @@
+name: openai-compatible
+match:
+  path_prefix: /v1
