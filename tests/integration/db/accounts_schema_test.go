@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestAccountsSchemaFilesAndTablesExist(t *testing.T) {
+func TestAccountsSchemaIncludesAccountUserIdentityAndAPIKey(t *testing.T) {
 	repoPath := filepath.Join("..", "..", "..", "services", "controlplane", "internal", "store", "accounts_repo.go")
 	if _, err := os.Stat(repoPath); err != nil {
 		t.Fatalf("缺少仓库文件 %s: %v", repoPath, err)
@@ -22,8 +22,11 @@ func TestAccountsSchemaFilesAndTablesExist(t *testing.T) {
 	sql := string(content)
 	for _, needle := range []string{
 		"CREATE TABLE account",
+		"status TEXT NOT NULL",
 		"CREATE TABLE user_identity",
+		"account_id UUID NOT NULL",
 		"CREATE TABLE api_key",
+		"key_hash TEXT NOT NULL",
 	} {
 		if !strings.Contains(sql, needle) {
 			t.Fatalf("迁移文件缺少 %q", needle)
