@@ -1,4 +1,4 @@
-import { expect, test } from './playwright-shim.cjs';
+import { expect, test } from '@playwright/test';
 
 test('platform smoke renders the shell', async ({ page }) => {
   await page.goto('/');
