@@ -6,6 +6,6 @@
   "scripts": {
     "test": "go test ./tests/integration -run TestPlatformBootstrapChecklist -v",
     "test:bootstrap": "go test ./tests/integration -run TestPlatformBootstrapChecklist -v",
-    "test:smoke": "NODE_PATH=$(npm root -g) npm exec --yes playwright test tests/e2e/platform-smoke.spec.ts --config=playwright.config.mjs"
+    "test:smoke": "npm exec --yes playwright test tests/e2e/platform-smoke.spec.ts --config=playwright.config.mjs"
   }
 }
