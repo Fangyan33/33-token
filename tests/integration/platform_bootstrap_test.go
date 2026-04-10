@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestPlatformBootstrapFilesExist(t *testing.T) {
+func TestPlatformBootstrapChecklist(t *testing.T) {
 	files := []string{
 		"package.json",
 		"pnpm-workspace.yaml",
