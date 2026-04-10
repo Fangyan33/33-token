@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func TestPaymentActivationSkeletonExists(t *testing.T) {
+func TestPaymentSuccessActivatesSubscriptionOnce(t *testing.T) {
 	paymentServicePath := filepath.Join("..", "..", "..", "services", "controlplane", "internal", "billing", "payments", "service.go")
 	content, err := os.ReadFile(paymentServicePath)
 	if err != nil {
@@ -46,7 +46,7 @@ func TestPaymentActivationSkeletonExists(t *testing.T) {
 			}
 			for _, fieldName := range []string{"ProviderEventID", "OrderID", "EventType"} {
 				if !fields[fieldName] {
-					t.Fatalf("支付事件模型缺少字段 %s", fieldName)
+					t.Fatalf("支付成功事件模型缺少字段 %s", fieldName)
 				}
 			}
 		}
@@ -74,22 +74,22 @@ func TestPaymentActivationSkeletonExists(t *testing.T) {
 			continue
 		}
 		if funcDecl.Type == nil || funcDecl.Type.Params == nil || len(funcDecl.Type.Params.List) != 1 {
-			t.Fatalf("ActivateFromPaidOrder 签名不正确")
+			t.Fatalf("支付成功开通入口 ActivateFromPaidOrder 签名不正确")
 		}
 		param := funcDecl.Type.Params.List[0]
 		if len(param.Names) != 1 || param.Names[0].Name != "orderID" {
-			t.Fatalf("ActivateFromPaidOrder 参数名不正确")
+			t.Fatalf("支付成功开通入口 ActivateFromPaidOrder 参数名不正确")
 		}
 		ident, ok := param.Type.(*ast.Ident)
 		if !ok || ident.Name != "string" {
-			t.Fatalf("ActivateFromPaidOrder 参数类型不正确")
+			t.Fatalf("支付成功开通入口 ActivateFromPaidOrder 参数类型不正确")
 		}
 		if funcDecl.Type.Results == nil || len(funcDecl.Type.Results.List) != 1 {
-			t.Fatalf("ActivateFromPaidOrder 返回值不正确")
+			t.Fatalf("支付成功开通入口 ActivateFromPaidOrder 返回值不正确")
 		}
 		resultIdent, ok := funcDecl.Type.Results.List[0].Type.(*ast.Ident)
 		if !ok || resultIdent.Name != "error" {
-			t.Fatalf("ActivateFromPaidOrder 返回类型不正确")
+			t.Fatalf("支付成功开通入口 ActivateFromPaidOrder 返回类型不正确")
 		}
 		foundActivate = true
 	}
