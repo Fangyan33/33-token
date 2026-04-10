@@ -6,7 +6,10 @@ const root = document.getElementById("root");
 if (root) {
   ReactDOM.createRoot(root).render(
     <React.StrictMode>
-      <div>Platform Web</div>
+      <main data-testid="platform-shell">
+        <h1>Platform MVP</h1>
+        <p>Local stack ready</p>
+      </main>
     </React.StrictMode>,
   );
 }
