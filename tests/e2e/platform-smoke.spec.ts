@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from '/root/.nvm/versions/node/v22.21.1/lib/node_modules/playwright/test.mjs';
 
 test('platform smoke renders the shell', async ({ page }) => {
   await page.goto('/');

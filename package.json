@@ -6,6 +6,6 @@
   "scripts": {
     "test": "go test ./tests/integration -run TestPlatformBootstrapChecklist -v",
     "test:bootstrap": "go test ./tests/integration -run TestPlatformBootstrapChecklist -v",
-    "test:smoke": "node -e \"const fs=require('fs');const spec=fs.readFileSync('tests/e2e/platform-smoke.spec.ts','utf8');const main=fs.readFileSync('apps/web/src/main.tsx','utf8');for (const needle of ['page.goto(\\'/\\')','getByTestId(\\'platform-shell\\')','Platform MVP','Local stack ready']) { if (!spec.includes(needle)) throw new Error('spec missing ' + needle); } for (const needle of ['data-testid=\\\"platform-shell\\\"','Platform MVP','Local stack ready']) { if (!main.includes(needle)) throw new Error('main missing ' + needle); } console.log('platform smoke aligned');\""
+    "test:smoke": "npm exec --yes playwright test tests/e2e/platform-smoke.spec.ts --config=playwright.config.mjs"
   }
 }
