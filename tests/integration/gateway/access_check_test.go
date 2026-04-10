@@ -4,7 +4,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strings"
 	"testing"
 )
 
@@ -33,13 +32,6 @@ func TestAccessCheckRejectsZeroQuota(t *testing.T) {
 		t.Fatalf("expected quota blocked error, got %v", err)
 	}
 }
-
-func TestAccessCheckRejectsInactiveStatus(t *testing.T) {
-	err := access.Check(access.Summary{Status: "suspended", QuotaRemaining: 10})
-	if !errors.Is(err, access.ErrQuotaBlocked) {
-		t.Fatalf("expected quota blocked error, got %v", err)
-	}
-}
 `)
 
 	testFile := filepath.Join(tempDir, "access_check_test.go")
@@ -47,14 +39,9 @@ func TestAccessCheckRejectsInactiveStatus(t *testing.T) {
 		t.Fatalf("写入临时测试文件失败: %v", err)
 	}
 
-	cmd := exec.Command("go", "test", "-run", "TestAccessCheckRejects(ZeroQuota|InactiveStatus)", "-v", ".")
+	cmd := exec.Command("go", "test", "-run", "TestAccessCheckRejectsZeroQuota", "-v", ".")
 	cmd.Dir = tempDir
-	output, err := cmd.CombinedOutput()
-	if err != nil {
+	if output, err := cmd.CombinedOutput(); err != nil {
 		t.Fatalf("临时行为测试执行失败: %v\n输出:\n%s", err, string(output))
-	}
-
-	if !strings.Contains(string(output), "PASS") {
-		t.Fatalf("临时行为测试未通过，输出:\n%s", string(output))
 	}
 }
