@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: platform
+      POSTGRES_USER: platform
+      POSTGRES_PASSWORD: platform
+
+  api:
+    image: golang:1.25
+    working_dir: /workspace/services/controlplane
+    command: go run ./cmd/api
+    environment:
+      PORT: "8080"
+      POSTGRES_DSN: postgres://platform:platform@postgres:5432/platform?sslmode=disable
+    volumes:
+      - ./:/workspace
+    depends_on:
+      - postgres
+
+  envoy:
+    image: envoyproxy/envoy:v1.35.9
+    command: ["-c", "/etc/envoy/envoy.yaml"]
+    volumes:
+      - ./gateway/envoy/envoy.yaml:/etc/envoy/envoy.yaml:ro
+    depends_on:
+      - api
