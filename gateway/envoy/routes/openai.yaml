@@ -1,0 +1,4 @@
+name: openai-compatible
+match:
+  path_prefix: /v1
+target_cluster: controlplane

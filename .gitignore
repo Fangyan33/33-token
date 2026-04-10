@@ -1,2 +1,9 @@
-.codex
-.worktrees/
+node_modules/
+dist/
+playwright-report/
+test-results/
+.DS_Store
+.env
+.env.local
+coverage/
+bin/

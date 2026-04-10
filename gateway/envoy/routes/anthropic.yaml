@@ -1,0 +1,4 @@
+name: anthropic-compatible
+match:
+  path_prefix: /anthropic
+target_cluster: controlplane

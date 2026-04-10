@@ -59,6 +59,16 @@
 
 建议拆分为 5 个模块。
 
+相关模块详细设计与补充设计见：
+
+- 官网站点模块设计：[`2026-04-09-official-website-module-design.md`](./2026-04-09-official-website-module-design.md)
+- 用户控制台模块设计：[`2026-04-09-user-console-module-design.md`](./2026-04-09-user-console-module-design.md)
+- API 代理网关模块设计：[`2026-04-09-api-gateway-module-design.md`](./2026-04-09-api-gateway-module-design.md)
+- 计费与订阅核心模块设计：[`2026-04-09-billing-and-subscription-core-module-design.md`](./2026-04-09-billing-and-subscription-core-module-design.md)
+- 管理后台模块设计：[`2026-04-09-admin-console-module-design.md`](./2026-04-09-admin-console-module-design.md)
+- 网关与计费核心交互时序设计：[`2026-04-09-gateway-billing-interaction-design.md`](./2026-04-09-gateway-billing-interaction-design.md)
+- 数据库逻辑模型设计：[`2026-04-09-database-logical-model-design.md`](./2026-04-09-database-logical-model-design.md)
+
 ### 4.1 官网站点
 
 职责：
@@ -69,6 +79,8 @@
 - 承接注册与登录转化
 
 不负责复杂业务逻辑。
+
+详细设计参见：[`2026-04-09-official-website-module-design.md`](./2026-04-09-official-website-module-design.md)
 
 ### 4.2 用户控制台
 
@@ -83,6 +95,8 @@
 
 第一版仅展示账户级汇总，不展示请求明细、模型维度或 API Key 维度 usage。
 
+详细设计参见：[`2026-04-09-user-console-module-design.md`](./2026-04-09-user-console-module-design.md)
+
 ### 4.3 API 代理网关
 
 职责：
@@ -94,6 +108,8 @@
 - 转发请求到上游模型服务
 - 处理兼容响应
 - 记录 usage 与计费事件
+
+详细设计参见：[`2026-04-09-api-gateway-module-design.md`](./2026-04-09-api-gateway-module-design.md)、[`2026-04-09-gateway-billing-interaction-design.md`](./2026-04-09-gateway-billing-interaction-design.md)、[`2026-04-09-database-logical-model-design.md`](./2026-04-09-database-logical-model-design.md)
 
 ### 4.4 计费与订阅核心
 
@@ -107,6 +123,8 @@
 - 决定是否暂停调用
 - 接收支付成功事件并自动发放权益
 
+详细设计参见：[`2026-04-09-billing-and-subscription-core-module-design.md`](./2026-04-09-billing-and-subscription-core-module-design.md)、[`2026-04-09-gateway-billing-interaction-design.md`](./2026-04-09-gateway-billing-interaction-design.md)、[`2026-04-09-database-logical-model-design.md`](./2026-04-09-database-logical-model-design.md)
+
 ### 4.5 管理后台
 
 职责：
@@ -116,6 +134,8 @@
 - 处理异常订单与补单
 - 调整账户套餐与状态
 - 查看运营所需的账户、订单、usage 汇总
+
+详细设计参见：[`2026-04-09-admin-console-module-design.md`](./2026-04-09-admin-console-module-design.md)、[`2026-04-09-database-logical-model-design.md`](./2026-04-09-database-logical-model-design.md)
 
 ## 5. 核心数据流
 

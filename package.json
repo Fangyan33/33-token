@@ -1,0 +1,15 @@
+{
+  "name": "model-api-platform",
+  "private": true,
+  "packageManager": "pnpm@10.0.0",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "build:web": "pnpm --filter web build",
+    "test:web": "pnpm --filter web test",
+    "test:e2e": "playwright test",
+    "test:integration": "go test ./tests/integration/..."
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0"
+  }
+}
