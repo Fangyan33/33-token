@@ -5,6 +5,7 @@
 ## 当前计划
 
 - `2026-04-10-platform-mvp-rollout-implementation-plan.md` 平台 MVP 分阶段落地总计划
+- `2026-04-10-platform-rollout-order.md` 平台跨计划实施顺序
 - `2026-04-10-api-gateway-implementation-plan.md` API 网关实施计划
 - `2026-04-10-database-logical-model-implementation-plan.md` 数据库逻辑模型实施计划
 - `2026-04-10-billing-subscription-core-implementation-plan.md` 计费与订阅核心实施计划
