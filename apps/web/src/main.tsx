@@ -1,5 +1,10 @@
-export const platformShell = {
-  testId: "platform-shell",
-  title: "Platform MVP",
-  status: "Local stack ready",
-} as const;
+const root = document.getElementById("root");
+
+if (root) {
+  root.innerHTML = `
+    <main data-testid="platform-shell">
+      <h1>Platform MVP</h1>
+      <p>Local stack ready</p>
+    </main>
+  `;
+}

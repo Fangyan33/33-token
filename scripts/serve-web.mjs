@@ -1,49 +1,36 @@
 import { createServer } from "node:http";
-import { readFileSync } from "node:fs";
+import { createReadStream, existsSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { extname, normalize } from "node:path";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const source = readFileSync(path.join(root, "apps/web/src/main.tsx"), "utf8");
+const webRoot = path.join(root, "apps/web");
 
-const readString = (key) => {
-  const match = source.match(new RegExp(`${key}:\\s*"([^"]+)"`));
-  if (!match) {
-    throw new Error(`missing ${key} in apps/web/src/main.tsx`);
-  }
-  return match[1];
+const mimeTypes = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".mjs": "text/javascript; charset=utf-8",
+  ".ts": "text/javascript; charset=utf-8",
+  ".tsx": "text/javascript; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
 };
-
-const shell = {
-  testId: readString("testId"),
-  title: readString("title"),
-  status: readString("status"),
-};
-
-const html = `<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>${shell.title}</title>
-  </head>
-  <body>
-    <main data-testid="${shell.testId}">
-      <h1>${shell.title}</h1>
-      <p>${shell.status}</p>
-    </main>
-  </body>
-</html>`;
 
 const server = createServer((req, res) => {
-  if (req.url === "/" || req.url === "/index.html") {
-    res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
-    res.end(html);
+  const url = req.url || "/";
+  const cleanPath = normalize(url.split("?")[0]).replace(/^(\.\.(\/|\\|$))+/, "");
+  const relativePath = cleanPath === "/" ? "index.html" : cleanPath.replace(/^\//, "");
+  const filePath = path.join(webRoot, relativePath);
+
+  if (!filePath.startsWith(webRoot) || !existsSync(filePath) || !statSync(filePath).isFile()) {
+    res.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
+    res.end("not found");
     return;
   }
 
-  res.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
-  res.end("not found");
+  const contentType = mimeTypes[extname(filePath)] || "application/octet-stream";
+  res.writeHead(200, { "content-type": contentType });
+  createReadStream(filePath).pipe(res);
 });
 
 server.listen(4173, "127.0.0.1", () => {
